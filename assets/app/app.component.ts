@@ -12,10 +12,9 @@ export class AppComponent implements OnInit {
     constructor(
         private spinnerService: Ng4LoadingSpinnerService,
         private messageService: MessageService,
-        private authService: AuthService
-    ) { }
+        private authService: AuthService) { }
     ngOnInit() {
         this.spinnerService.hide();
     }
-    title = 'Portfolio';
+    title = 'Mean Stack';
 }

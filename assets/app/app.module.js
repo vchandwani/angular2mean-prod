@@ -15,23 +15,17 @@ import { routing } from "./app.routing";
 import { AuthService } from "./auth/auth.service";
 import { ErrorComponent } from "./errors/error.component";
 import { ErrorService } from "./errors/error.service";
-import { MessageModule } from "./messages/message.module";
 import { DataTableModule, SharedModule, DialogModule, DataGridModule, InputTextModule, ButtonModule } from 'primeng/primeng';
 import { TableModule } from 'primeng/table';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ChartsModule } from 'ng2-charts';
+import { MessageModule } from "./messages/message.module";
 var AppModule = /** @class */ (function () {
     function AppModule(appRef) {
         this.appRef = appRef;
     }
     AppModule.decorators = [
         { type: NgModule, args: [{
-                    declarations: [
-                        AppComponent,
-                        AuthenticationComponent,
-                        HeaderComponent,
-                        ErrorComponent
-                    ],
                     imports: [
                         CommonModule,
                         FormsModule,
@@ -52,6 +46,12 @@ var AppModule = /** @class */ (function () {
                         CalendarModule,
                         SelectModule,
                         MessageModule
+                    ],
+                    declarations: [
+                        AppComponent,
+                        AuthenticationComponent,
+                        HeaderComponent,
+                        ErrorComponent
                     ],
                     providers: [AuthService, ErrorService],
                     bootstrap: [AppComponent]

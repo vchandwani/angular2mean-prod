@@ -7,7 +7,7 @@ var AppComponent = /** @class */ (function () {
         this.spinnerService = spinnerService;
         this.messageService = messageService;
         this.authService = authService;
-        this.title = 'Portfolio';
+        this.title = 'Mean Stack';
     }
     AppComponent.prototype.ngOnInit = function () {
         this.spinnerService.hide();
