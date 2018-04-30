@@ -1,27 +1,16 @@
 import { Component, Input } from "@angular/core";
 import { Message } from "./message.model";
 import { MessageService } from "./message.service";
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 var MessageComponent = /** @class */ (function () {
-    function MessageComponent(spinnerService, messageService) {
-        this.spinnerService = spinnerService;
+    function MessageComponent(messageService) {
         this.messageService = messageService;
     }
     MessageComponent.prototype.onEdit = function () {
         this.messageService.editMessage(this.message);
     };
     MessageComponent.prototype.onDelete = function () {
-        var _this = this;
-        this.spinnerService.show();
         this.messageService.deleteMessage(this.message)
-            .subscribe(function (data) {
-            _this.spinnerService.hide();
-        }, function (error) {
-            _this.spinnerService.hide();
-            //console.error(error)
-        }
-        //result => console.log(result)
-        );
+            .subscribe(function (result) { return console.log(result); });
     };
     MessageComponent.prototype.belongsToUser = function () {
         return localStorage.getItem('userId') == this.message.userId;
@@ -29,12 +18,12 @@ var MessageComponent = /** @class */ (function () {
     MessageComponent.decorators = [
         { type: Component, args: [{
                     selector: 'app-message',
-                    templateUrl: './message.component.html'
+                    templateUrl: './message.component.html',
+                    styles: ["\n        .author {\n            display: inline-block;\n            font-style: italic;\n            font-size: 12px;\n            width: 80%;\n        }\n        .config {\n            display: inline-block;\n            text-align: right;\n            font-size: 12px;\n            width: 19%;\n        }\n    "]
                 },] },
     ];
     /** @nocollapse */
     MessageComponent.ctorParameters = function () { return [
-        { type: Ng4LoadingSpinnerService, },
         { type: MessageService, },
     ]; };
     MessageComponent.propDecorators = {

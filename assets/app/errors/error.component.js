@@ -4,8 +4,6 @@ var ErrorComponent = /** @class */ (function () {
     function ErrorComponent(errorService) {
         this.errorService = errorService;
         this.display = 'none';
-        this.displaySuccess = 'none';
-        this.displayError = 'none';
     }
     ErrorComponent.prototype.onErrorHandled = function () {
         this.display = 'none';
@@ -14,14 +12,6 @@ var ErrorComponent = /** @class */ (function () {
         var _this = this;
         this.errorService.errorOccurred
             .subscribe(function (error) {
-            if (error.success) {
-                _this.displaySuccess = '';
-                _this.displayError = 'none';
-            }
-            else {
-                _this.displayError = '';
-                _this.displaySuccess = 'none';
-            }
             _this.error = error;
             _this.display = 'block';
         });
@@ -29,7 +19,8 @@ var ErrorComponent = /** @class */ (function () {
     ErrorComponent.decorators = [
         { type: Component, args: [{
                     selector: 'app-error',
-                    templateUrl: './error.component.html'
+                    templateUrl: './error.component.html',
+                    styles: ["\n        .backdrop {\n            background-color: rgba(0,0,0,0.6);\n            position: fixed;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100vh;\n        }\n    "]
                 },] },
     ];
     /** @nocollapse */

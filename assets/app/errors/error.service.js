@@ -5,12 +5,8 @@ var ErrorService = /** @class */ (function () {
         this.errorOccurred = new EventEmitter();
     }
     ErrorService.prototype.handleError = function (error) {
-        var errorData = new Error(error.title, error.error.message, false);
+        var errorData = new Error(error.title, error.error.message);
         this.errorOccurred.emit(errorData);
-    };
-    ErrorService.prototype.handleSuccess = function (error) {
-        var successData = new Error(error.title, '', true);
-        this.errorOccurred.emit(successData);
     };
     return ErrorService;
 }());
