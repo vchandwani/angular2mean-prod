@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
-import API from '../../core/api';
 import { ErrorService } from "../errors/error.service";
 var AuthService = /** @class */ (function () {
     function AuthService(http, errorService) {
@@ -13,8 +12,12 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/' + API.user, body, { headers: headers })
-            .map(function (response) { return response.json(); })
+        return this.http.post('http://localhost:3000/user', body, { headers: headers })
+            .map(function (response) {
+            response.json();
+            _this.errorService.handleSuccess(response.json());
+            return Observable.throw(response.json());
+        })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
             return Observable.throw(error.json());
@@ -24,7 +27,7 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/' + API.userSignIn, body, { headers: headers })
+        return this.http.post('http://localhost:3000/user/signin', body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -33,6 +36,8 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.logout = function () {
         localStorage.clear();
+        this.errorService.handleSuccess({ 'title': 'Logged Out', 'message': '', 'successs': true });
+        return Observable.throw({ 'title': 'Logged Out', 'message': '', 'successs': true });
     };
     AuthService.prototype.isLoggedIn = function () {
         return localStorage.getItem('token') !== null;

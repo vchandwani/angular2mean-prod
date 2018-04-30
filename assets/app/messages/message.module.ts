@@ -7,6 +7,9 @@ import { MessageListComponent } from "./message-list.component";
 import { MessageComponent } from "./message.component";
 import { MessageInputComponent } from "./message-input.component";
 import { MessageService } from "./message.service";
+import { DataTableModule, SharedModule, DialogModule,DataGridModule ,InputTextModule,ButtonModule} from 'primeng/primeng';
+import { TableModule } from 'primeng/table';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
     declarations: [
@@ -17,7 +20,10 @@ import { MessageService } from "./message.service";
     ],
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        DataTableModule, SharedModule, DialogModule,DataGridModule ,InputTextModule,ButtonModule,
+        TableModule,
+        Ng4LoadingSpinnerModule.forRoot()
     ],
     providers: [MessageService]
 })

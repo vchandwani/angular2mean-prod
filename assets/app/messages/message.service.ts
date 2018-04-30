@@ -2,7 +2,7 @@ import { Http, Response, Headers } from "@angular/http";
 import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable, BehaviorSubject } from "rxjs";
-import API from '../../core/api';
+
 import { Message } from "./message.model";
 import { ErrorService } from "../errors/error.service";
 
@@ -13,14 +13,14 @@ export class MessageService {
 
     constructor(private http: Http, private errorService: ErrorService) {
     }
-
+    
     addMessage(message: Message) {
         const body = JSON.stringify(message);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/' + API.message + token, body, {headers: headers})
+        return this.http.post('http://localhost:3000/message' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 const message = new Message(
@@ -29,7 +29,10 @@ export class MessageService {
                     result.obj._id,
                     result.obj.user._id);
                 this.messages.push(message);
-                return message;
+                if(message){
+                    this.errorService.handleSuccess(response.json());
+                    return message; 
+                }                
             })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -38,7 +41,7 @@ export class MessageService {
     }
 
     getMessages() {
-        return this.http.get('https://sheltered-caverns-71469.herokuapp.com/' + API.message)
+        return this.http.get('http://localhost:3000/message')
             .map((response: Response) => {
                 const messages = response.json().obj;
                 let transformedMessages: Message[] = [];
@@ -69,8 +72,10 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.patch( 'https://sheltered-caverns-71469.herokuapp.com/' + API.message + message.messageId + token, body, {headers: headers})
-            .map((response: Response) => response.json())
+        return this.http.patch('http://localhost:3000/message'+'/' + message.messageId + token, body, {headers: headers})
+            .map((response: Response) => {                
+                this.errorService.handleSuccess(response.json());                
+            })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
@@ -82,8 +87,10 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete('https://sheltered-caverns-71469.herokuapp.com/' + API.message + message.messageId + token)
-            .map((response: Response) => response.json())
+        return this.http.delete('http://localhost:3000/message'+'/' + message.messageId + token)
+            .map((response: Response) => {                
+                this.errorService.handleSuccess(response.json());                
+            })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json());

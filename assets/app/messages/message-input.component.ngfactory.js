@@ -7,7 +7,8 @@
 import * as i0 from "@angular/core";
 import * as i1 from "@angular/forms";
 import * as i2 from "./message-input.component";
-import * as i3 from "./message.service";
+import * as i3 from "ng4-loading-spinner";
+import * as i4 from "./message.service";
 var styles_MessageInputComponent = [];
 var RenderType_MessageInputComponent = i0.ɵcrt({ encapsulation: 2, styles: styles_MessageInputComponent, data: {} });
 export { RenderType_MessageInputComponent as RenderType_MessageInputComponent };
@@ -36,6 +37,6 @@ export function View_MessageInputComponent_0(_l) { return i0.ɵvid(0, [(_l()(), 
         var pd_0 = (_co.onClear(i0.ɵnov(_v, 4)) !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), (_l()(), i0.ɵted(-1, null, ["Clear"])), (_l()(), i0.ɵted(-1, null, ["\n        "])), (_l()(), i0.ɵeld(26, 0, null, null, 1, "button", [["class", "btn btn-primary"], ["type", "submit"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Save"])), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n"]))], function (_ck, _v) { var _co = _v.component; var currVal_15 = ""; _ck(_v, 15, 0, currVal_15); var currVal_16 = "content"; var currVal_17 = ((_co.message == null) ? null : _co.message.content); _ck(_v, 18, 0, currVal_16, currVal_17); }, function (_ck, _v) { var currVal_0 = i0.ɵnov(_v, 6).ngClassUntouched; var currVal_1 = i0.ɵnov(_v, 6).ngClassTouched; var currVal_2 = i0.ɵnov(_v, 6).ngClassPristine; var currVal_3 = i0.ɵnov(_v, 6).ngClassDirty; var currVal_4 = i0.ɵnov(_v, 6).ngClassValid; var currVal_5 = i0.ɵnov(_v, 6).ngClassInvalid; var currVal_6 = i0.ɵnov(_v, 6).ngClassPending; _ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = (i0.ɵnov(_v, 15).required ? "" : null); var currVal_8 = i0.ɵnov(_v, 20).ngClassUntouched; var currVal_9 = i0.ɵnov(_v, 20).ngClassTouched; var currVal_10 = i0.ɵnov(_v, 20).ngClassPristine; var currVal_11 = i0.ɵnov(_v, 20).ngClassDirty; var currVal_12 = i0.ɵnov(_v, 20).ngClassValid; var currVal_13 = i0.ɵnov(_v, 20).ngClassInvalid; var currVal_14 = i0.ɵnov(_v, 20).ngClassPending; _ck(_v, 13, 0, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14); }); }
-export function View_MessageInputComponent_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "app-message-input", [], null, null, null, View_MessageInputComponent_0, RenderType_MessageInputComponent)), i0.ɵdid(1, 114688, null, 0, i2.MessageInputComponent, [i3.MessageService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+export function View_MessageInputComponent_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "app-message-input", [], null, null, null, View_MessageInputComponent_0, RenderType_MessageInputComponent)), i0.ɵdid(1, 114688, null, 0, i2.MessageInputComponent, [i3.Ng4LoadingSpinnerService, i4.MessageService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var MessageInputComponentNgFactory = i0.ɵccf("app-message-input", i2.MessageInputComponent, View_MessageInputComponent_Host_0, {}, {}, []);
 export { MessageInputComponentNgFactory as MessageInputComponentNgFactory };
