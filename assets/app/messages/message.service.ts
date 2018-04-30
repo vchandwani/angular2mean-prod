@@ -1,7 +1,8 @@
 import { Http, Response, Headers } from "@angular/http";
 import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs/Rx';
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
+
 import { Message } from "./message.model";
 import { ErrorService } from "../errors/error.service";
 
@@ -12,7 +13,7 @@ export class MessageService {
 
     constructor(private http: Http, private errorService: ErrorService) {
     }
-    
+
     addMessage(message: Message) {
         const body = JSON.stringify(message);
         const headers = new Headers({'Content-Type': 'application/json'});
@@ -28,10 +29,7 @@ export class MessageService {
                     result.obj._id,
                     result.obj.user._id);
                 this.messages.push(message);
-                if(message){
-                    this.errorService.handleSuccess(response.json());
-                    return message; 
-                }                
+                return message;
             })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -71,10 +69,8 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.patch('https://sheltered-caverns-71469.herokuapp.com/message'+'/' + message.messageId + token, body, {headers: headers})
-            .map((response: Response) => {                
-                this.errorService.handleSuccess(response.json());                
-            })
+        return this.http.patch('https://sheltered-caverns-71469.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
+            .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
@@ -86,10 +82,8 @@ export class MessageService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete('https://sheltered-caverns-71469.herokuapp.com/message'+'/' + message.messageId + token)
-            .map((response: Response) => {                
-                this.errorService.handleSuccess(response.json());                
-            })
+        return this.http.delete('https://sheltered-caverns-71469.herokuapp.com/message/' + message.messageId + token)
+            .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json());

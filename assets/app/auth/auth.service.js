@@ -13,11 +13,7 @@ var AuthService = /** @class */ (function () {
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
         return this.http.post('https://sheltered-caverns-71469.herokuapp.com/user', body, { headers: headers })
-            .map(function (response) {
-            response.json();
-            _this.errorService.handleSuccess(response.json());
-            return Observable.throw(response.json());
-        })
+            .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
             return Observable.throw(error.json());
@@ -36,8 +32,6 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.logout = function () {
         localStorage.clear();
-        this.errorService.handleSuccess({ 'title': 'Logged Out', 'message': '', 'successs': true });
-        return Observable.throw({ 'title': 'Logged Out', 'message': '', 'successs': true });
     };
     AuthService.prototype.isLoggedIn = function () {
         return localStorage.getItem('token') !== null;

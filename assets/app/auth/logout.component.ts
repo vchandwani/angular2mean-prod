@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { AuthService } from "./auth.service";
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-logout',
@@ -13,12 +12,10 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     `
 })
 export class LogoutComponent {
-    constructor(private spinnerService: Ng4LoadingSpinnerService,private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     onLogout() {
-        this.spinnerService.show();
         this.authService.logout();
         this.router.navigate(['/auth', 'signin']);
-        this.spinnerService.hide();
     }
 }

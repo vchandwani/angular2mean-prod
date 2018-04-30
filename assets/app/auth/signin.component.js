@@ -3,27 +3,20 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { User } from "./user.model";
 import { AuthService } from "./auth.service";
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 var SigninComponent = /** @class */ (function () {
-    function SigninComponent(spinnerService, authService, router) {
-        this.spinnerService = spinnerService;
+    function SigninComponent(authService, router) {
         this.authService = authService;
         this.router = router;
     }
     SigninComponent.prototype.onSubmit = function () {
         var _this = this;
-        this.spinnerService.show();
         var user = new User(this.myForm.value.email, this.myForm.value.password);
         this.authService.signin(user)
             .subscribe(function (data) {
             localStorage.setItem('token', data.token);
             localStorage.setItem('userId', data.userId);
             _this.router.navigateByUrl('/');
-            _this.spinnerService.hide();
-        }, function (error) {
-            _this.spinnerService.hide();
-            //console.error(error)
-        });
+        }, function (error) { return console.error(error); });
         this.myForm.reset();
     };
     SigninComponent.prototype.ngOnInit = function () {
@@ -43,7 +36,6 @@ var SigninComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     SigninComponent.ctorParameters = function () { return [
-        { type: Ng4LoadingSpinnerService, },
         { type: AuthService, },
         { type: Router, },
     ]; };
