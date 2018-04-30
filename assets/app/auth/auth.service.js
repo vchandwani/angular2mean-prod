@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
-import API from '../../core/api';
 import { ErrorService } from "../errors/error.service";
 var AuthService = /** @class */ (function () {
     function AuthService(http, errorService) {
@@ -13,7 +12,7 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(API.host + API.user, body, { headers: headers })
+        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/user', body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -24,7 +23,7 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(API.host + API.userSignIn, body, { headers: headers })
+        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/user/signin', body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
