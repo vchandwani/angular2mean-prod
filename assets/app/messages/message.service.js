@@ -24,7 +24,10 @@ var MessageService = /** @class */ (function () {
             var result = response.json();
             var message = new Message(result.obj.content, result.obj.user.firstName, result.obj._id, result.obj.user._id);
             _this.messages.push(message);
-            return message;
+            if (message) {
+                _this.errorService.handleSuccess(response.json());
+                return message;
+            }
         })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -59,8 +62,10 @@ var MessageService = /** @class */ (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.patch(API.host + API.message + message.messageId + token, body, { headers: headers })
-            .map(function (response) { return response.json(); })
+        return this.http.patch(API.host + API.message + '/' + message.messageId + token, body, { headers: headers })
+            .map(function (response) {
+            _this.errorService.handleSuccess(response.json());
+        })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
             return Observable.throw(error.json());
@@ -72,8 +77,10 @@ var MessageService = /** @class */ (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete(API.host + API.message + message.messageId + token)
-            .map(function (response) { return response.json(); })
+        return this.http.delete(API.host + API.message + '/' + message.messageId + token)
+            .map(function (response) {
+            _this.errorService.handleSuccess(response.json());
+        })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
             return Observable.throw(error.json());
