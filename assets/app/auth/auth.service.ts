@@ -13,7 +13,7 @@ export class AuthService {
     signup(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(API.host+API.user, body, {headers: headers})
+        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/'+API.user, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -24,7 +24,7 @@ export class AuthService {
     signin(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(API.host+API.userSignIn, body, {headers: headers})
+        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/'+API.userSignIn, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());

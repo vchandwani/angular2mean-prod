@@ -13,7 +13,7 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(API.host + API.user, body, { headers: headers })
+        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/' + API.user, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -24,7 +24,7 @@ var AuthService = /** @class */ (function () {
         var _this = this;
         var body = JSON.stringify(user);
         var headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(API.host + API.userSignIn, body, { headers: headers })
+        return this.http.post('https://sheltered-caverns-71469.herokuapp.com/' + API.userSignIn, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());

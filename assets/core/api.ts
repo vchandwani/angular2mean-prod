@@ -1,6 +1,6 @@
 export default {
-    host : 'https://sheltered-caverns-71469.herokuapp.com/',
-    // host : 'http://localhost:3000/',
+    // host : 'https://sheltered-caverns-71469.herokuapp.com/',
+    host : 'http://localhost:3000/',
     message:'message',
     user:'user',
     userSignIn:'user/signin',
