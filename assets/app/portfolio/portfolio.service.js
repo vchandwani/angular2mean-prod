@@ -21,12 +21,13 @@ var PortfolioService = /** @class */ (function () {
             : '';
         return this.http.get(API.api_url + API.portfolioNames + token)
             .map(function (response) {
+            console.log('response' + response);
+            console.log('response' + response.json().obj);
             var portfolioDetails = response.json().obj;
             var portfolioNames = [];
             portfolioDetails.forEach(function (item, index) {
                 portfolioNames.push(item);
             });
-            console.log(portfolioNames);
             return portfolioNames;
         })
             .catch(function (error) {
