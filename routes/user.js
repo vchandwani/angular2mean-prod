@@ -20,9 +20,8 @@ router.post('/', function (req, res, next) {
             });
         }
         res.status(201).json({
-            title: 'User created',
-            obj: result,
-            success : true
+            message: 'User created',
+            obj: result
         });
     });
 });
@@ -49,7 +48,7 @@ router.post('/signin', function(req, res, next) {
         }
         var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
         res.status(200).json({
-            title: 'Successfully logged in',
+            message: 'Successfully logged in',
             token: token,
             userId: user._id
         });

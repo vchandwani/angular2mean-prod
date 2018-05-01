@@ -1,8 +1,7 @@
 var Error = /** @class */ (function () {
-    function Error(title, message, success) {
+    function Error(title, message) {
         this.title = title;
         this.message = message;
-        this.success = success;
     }
     return Error;
 }());
