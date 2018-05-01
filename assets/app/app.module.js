@@ -19,6 +19,7 @@ import { TableModule } from 'primeng/table';
 import { PortfolioDetailModule } from "./portfolio-detail/portfolio-detail.module";
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ChartsModule } from 'ng2-charts';
+import { PortfolioService } from "./portfolio/portfolio.service";
 import { PortfolioComponent } from "./portfolio/portfolio.component";
 import { PortfolioListComponent } from "./portfolio/portfolio-list.component";
 import { PortfolioInputComponent } from "./portfolio/portfolio-input.component";
@@ -66,7 +67,7 @@ var AppModule = /** @class */ (function () {
                         CalendarModule,
                         SelectModule,
                     ],
-                    providers: [AuthService, ErrorService, MessageService
+                    providers: [AuthService, ErrorService, PortfolioService, MessageService
                     ],
                     bootstrap: [AppComponent]
                 },] },

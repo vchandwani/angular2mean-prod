@@ -66,7 +66,7 @@ import { MessageService } from "./messages/message.service";
         CalendarModule,
         SelectModule,
     ],
-    providers: [AuthService, ErrorService,MessageService
+    providers: [AuthService, ErrorService,PortfolioService,MessageService
     ],
     bootstrap: [AppComponent]
 })
