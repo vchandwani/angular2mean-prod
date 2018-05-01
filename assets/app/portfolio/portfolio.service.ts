@@ -21,12 +21,13 @@ export class PortfolioService {
             : '';
         return this.http.get(API.api_url+API.portfolioNames + token)
             .map((response: Response) => {
+                console.log('response'+response);
+                console.log('response'+response.json().obj);
                 const portfolioDetails = response.json().obj;
                 let portfolioNames = [];
                 portfolioDetails.forEach((item, index) => {
                     portfolioNames.push(item);
                 });
-                console.log(portfolioNames);
                 return portfolioNames;
             })
             .catch((error: Response) => {
