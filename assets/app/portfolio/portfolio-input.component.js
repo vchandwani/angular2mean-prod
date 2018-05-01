@@ -104,9 +104,11 @@ var PortfolioInputComponent = /** @class */ (function () {
     };
     PortfolioInputComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log('here');
         this.edit = false;
         this.portfolioService.getNames()
             .subscribe(function (data) {
+            console.log(data);
             var i = 0;
             for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
                 var detail = data_1[_i];
@@ -119,9 +121,10 @@ var PortfolioInputComponent = /** @class */ (function () {
             }
         }, function (error) {
             _this.spinnerService.hide();
-            //console.error(error)
+            console.error(error);
         });
         this.portfolioService.portfolioIsEdit.subscribe(function (portfolio) {
+            console.log('portfolio' + portfolio);
             _this.edit = true;
             _this.portfolio = portfolio;
             _this.Date = new Date(portfolio.Date.toString());
@@ -133,7 +136,7 @@ var PortfolioInputComponent = /** @class */ (function () {
             _this.activeType = [portfolio.type];
         }, function (error) {
             _this.spinnerService.hide();
-            //console.error(error)
+            console.error(error);
         });
     };
     PortfolioInputComponent.decorators = [

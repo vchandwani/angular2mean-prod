@@ -123,10 +123,12 @@ export class PortfolioInputComponent implements OnInit {
                 });
     }
     ngOnInit() {
+        console.log('here');
         this.edit = false;
         this.portfolioService.getNames()
             .subscribe(
                 data => {
+                    console.log(data);
                     let i = 0;
                     for (let detail of data) {
                         this.details.push(detail);
@@ -139,10 +141,11 @@ export class PortfolioInputComponent implements OnInit {
                 },
                 error => {
                     this.spinnerService.hide();
-                    //console.error(error)
+                    console.error(error)
                 });
         this.portfolioService.portfolioIsEdit.subscribe(
             (portfolio: Portfolio) => {
+                console.log('portfolio'+portfolio);
                 this.edit = true;
                 this.portfolio = portfolio;
                 this.Date = new Date(portfolio.Date.toString());
@@ -155,7 +158,7 @@ export class PortfolioInputComponent implements OnInit {
             },
             error => {
                 this.spinnerService.hide();
-                //console.error(error)
+                console.error(error)
             }
         );
     }
