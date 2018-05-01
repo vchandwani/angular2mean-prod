@@ -41,18 +41,18 @@ import { MessageModule } from "./messages/message.module";
         routing,
         HttpModule,
         // PortfolioDetailModule,
-        Ng4LoadingSpinnerModule.forRoot(),
-        Ng2OdometerModule.forRoot(),
-        ChartsModule,
-        DataTableModule,
-        DataGridModule,
-        ButtonModule,
-        TableModule,
-        InputTextModule,
-        SharedModule,
-        DialogModule,
-        CalendarModule,
-        SelectModule,
+        // Ng4LoadingSpinnerModule.forRoot(),
+        // Ng2OdometerModule.forRoot(),
+        // ChartsModule,
+        // DataTableModule,
+        // DataGridModule,
+        // ButtonModule,
+        // TableModule,
+        // InputTextModule,
+        // SharedModule,
+        // DialogModule,
+        // CalendarModule,
+        // SelectModule,
         MessageModule
     ],
     providers: [AuthService, ErrorService
@@ -60,8 +60,4 @@ import { MessageModule } from "./messages/message.module";
     bootstrap: [AppComponent]
 })
 export class AppModule {
-    constructor(public appRef: ApplicationRef) {
-    }
-
 }
-platformBrowserDynamic().bootstrapModule(AppModule);
