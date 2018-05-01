@@ -119,10 +119,8 @@ router.get('/monthly', function (req, res, next) {
     });
 });
 router.get('/activeFunds', function (req, res, next) {
-    console.log('here');
     Fundname.find({ active: true })
         .exec(function (err, fundname) {
-            console.log('fundname '+fundname);
             if (err) {
                 return res.status(500).json({
                     title: 'An error occurred',

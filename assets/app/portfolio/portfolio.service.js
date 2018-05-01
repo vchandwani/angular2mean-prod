@@ -81,7 +81,6 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.getActiveFunds = function () {
         var _this = this;
-        console.log(API.api_url + API.fundWise);
         return this.http.get(API.api_url + API.fundWise)
             .map(function (response) {
             var activeFundsDetails = response.json().obj;

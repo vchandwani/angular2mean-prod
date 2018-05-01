@@ -91,7 +91,6 @@ export class PortfolioService {
             });
     }
     getActiveFunds() {
-        console.log(API.api_url+API.fundWise);
         return this.http.get(API.api_url+API.fundWise)
             .map((response: Response) => {
                 const activeFundsDetails = response.json().obj;
