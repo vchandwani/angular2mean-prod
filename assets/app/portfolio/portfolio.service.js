@@ -1,5 +1,5 @@
-import { Injectable, EventEmitter } from "@angular/core";
 import { Http, Headers } from "@angular/http";
+import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
 import API from '../../core/api';

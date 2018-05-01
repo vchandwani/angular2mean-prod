@@ -1,11 +1,10 @@
+import { Http, Response, Headers } from "@angular/http";
 import { Injectable, EventEmitter } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable, BehaviorSubject } from "rxjs";
 import API from '../../core/api';
 import { ErrorService } from "../errors/error.service";
 import { Portfolio } from "./portfolio.model";
-import { port } from "_debugger";
 
 @Injectable()
 export class PortfolioService {
