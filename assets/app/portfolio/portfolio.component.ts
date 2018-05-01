@@ -85,6 +85,7 @@ export class PortfolioComponent implements OnInit {
         this.portfolioService.getActiveFunds()
             .subscribe(
                 data => {
+                    console.log('data'+data);
                     this.rows = data;
                     let i = 0;
                     this.rows.forEach((item) => {
@@ -135,7 +136,7 @@ export class PortfolioComponent implements OnInit {
                 },
                 error => {
                     this.spinnerService.hide();
-                    //console.error(error)
+                    console.error(error)
                 }
             );
     }

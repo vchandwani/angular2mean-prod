@@ -37,6 +37,7 @@ var PortfolioComponent = /** @class */ (function () {
         this.spinnerService.show();
         this.portfolioService.getActiveFunds()
             .subscribe(function (data) {
+            console.log('data' + data);
             _this.rows = data;
             var i = 0;
             _this.rows.forEach(function (item) {
@@ -83,7 +84,7 @@ var PortfolioComponent = /** @class */ (function () {
             }
         }, function (error) {
             _this.spinnerService.hide();
-            //console.error(error)
+            console.error(error);
         });
     };
     PortfolioComponent.prototype.latestPrices = function () {
