@@ -95,7 +95,6 @@ var PortfolioComponent = /** @class */ (function () {
             .subscribe(function (data) {
             var k = 0;
             var i = 0;
-            console.log('1' + data);
             _this.rows = data;
             _this.rows.forEach(function (item) {
                 if (_this.tempUID.indexOf(item.uid) < 0) {
@@ -104,10 +103,8 @@ var PortfolioComponent = /** @class */ (function () {
                     setTimeout(function () {
                         _this.portfolioService.latestValue(item.uid, item.type)
                             .subscribe(function (data) {
-                            console.log('2 ' + data);
                             _this.portfolioService.updateLatestValue(item.uid, item.type, data)
                                 .subscribe(function (data) {
-                                console.log('3 ' + data);
                                 k++;
                                 if (k == _this.rows.length) {
                                     _this.spinnerService.hide();
