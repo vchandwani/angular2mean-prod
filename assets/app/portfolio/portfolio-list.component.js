@@ -24,6 +24,9 @@ var PortfolioListComponent = /** @class */ (function () {
             .subscribe(function (portfolios) {
             _this.portfolios = portfolios;
             _this.spinnerService.hide();
+        }, function (error) {
+            _this.spinnerService.hide();
+            //console.error(error)
         });
     };
     PortfolioListComponent.prototype.onEdit = function (portfolio) {

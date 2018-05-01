@@ -117,6 +117,9 @@ var PortfolioInputComponent = /** @class */ (function () {
                     _this.names = _this.namesMain;
                 }
             }
+        }, function (error) {
+            _this.spinnerService.hide();
+            //console.error(error)
         });
         this.portfolioService.portfolioIsEdit.subscribe(function (portfolio) {
             _this.edit = true;
@@ -128,6 +131,9 @@ var PortfolioInputComponent = /** @class */ (function () {
             _this.uidDisplay = portfolio.uid;
             _this.activeName = [portfolio.Name];
             _this.activeType = [portfolio.type];
+        }, function (error) {
+            _this.spinnerService.hide();
+            //console.error(error)
         });
     };
     PortfolioInputComponent.decorators = [
