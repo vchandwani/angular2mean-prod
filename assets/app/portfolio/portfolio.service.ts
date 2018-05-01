@@ -13,15 +13,12 @@ export class PortfolioService {
 
     constructor(private http: Http, private errorService: ErrorService) { }
     getNames() {
-        console.log('get names')
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url+API.portfolioNames + token)
+        return this.http.get(API.api_url+API.portfolioNames)
             .map((response: Response) => {
-                console.log('response'+response);
-                console.log('response'+response.json().obj);
                 const portfolioDetails = response.json().obj;
                 let portfolioNames = [];
                 portfolioDetails.forEach((item, index) => {
@@ -39,7 +36,7 @@ export class PortfolioService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url+API.mutualFundNames + token)
+        return this.http.get(API.api_url+API.mutualFundNames)
             .map((response: Response) => {
                 const portfolioDetails = response.json().obj;
                 let portfolioNames = [];
@@ -58,7 +55,7 @@ export class PortfolioService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url+API.portfolio + token)
+        return this.http.get(API.api_url+API.portfolio)
             .map((response: Response) => {
                 const portfolioDetails = response.json().obj;
                 let transformedPortfolioDetail: Portfolio[] = [];
@@ -89,7 +86,7 @@ export class PortfolioService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url+API.portfolioMonthly + token)
+        return this.http.get(API.api_url+API.portfolioMonthly)
             .map((response: Response) => {
                 const portfolioMonthlyDetails = response.json().obj;
                 let transformedPortfolioMonthlyDetail = [];

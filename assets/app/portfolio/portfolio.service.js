@@ -14,15 +14,12 @@ var PortfolioService = /** @class */ (function () {
     }
     PortfolioService.prototype.getNames = function () {
         var _this = this;
-        console.log('get names');
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url + API.portfolioNames + token)
+        return this.http.get(API.api_url + API.portfolioNames)
             .map(function (response) {
-            console.log('response' + response);
-            console.log('response' + response.json().obj);
             var portfolioDetails = response.json().obj;
             var portfolioNames = [];
             portfolioDetails.forEach(function (item, index) {
@@ -41,7 +38,7 @@ var PortfolioService = /** @class */ (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url + API.mutualFundNames + token)
+        return this.http.get(API.api_url + API.mutualFundNames)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
             var portfolioNames = [];
@@ -61,7 +58,7 @@ var PortfolioService = /** @class */ (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url + API.portfolio + token)
+        return this.http.get(API.api_url + API.portfolio)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
             var transformedPortfolioDetail = [];
@@ -83,7 +80,7 @@ var PortfolioService = /** @class */ (function () {
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.get(API.api_url + API.portfolioMonthly + token)
+        return this.http.get(API.api_url + API.portfolioMonthly)
             .map(function (response) {
             var portfolioMonthlyDetails = response.json().obj;
             var transformedPortfolioMonthlyDetail = [];
