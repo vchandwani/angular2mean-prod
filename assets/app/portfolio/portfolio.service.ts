@@ -14,6 +14,7 @@ export class PortfolioService {
 
     constructor(private http: Http, private errorService: ErrorService) { }
     getNames() {
+        console.log('get names')
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
@@ -25,6 +26,7 @@ export class PortfolioService {
                 portfolioDetails.forEach((item, index) => {
                     portfolioNames.push(item);
                 });
+                console.log(portfolioNames);
                 return portfolioNames;
             })
             .catch((error: Response) => {

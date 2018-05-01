@@ -14,6 +14,7 @@ var PortfolioService = /** @class */ (function () {
     }
     PortfolioService.prototype.getNames = function () {
         var _this = this;
+        console.log('get names');
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
@@ -25,6 +26,7 @@ var PortfolioService = /** @class */ (function () {
             portfolioDetails.forEach(function (item, index) {
                 portfolioNames.push(item);
             });
+            console.log(portfolioNames);
             return portfolioNames;
         })
             .catch(function (error) {
