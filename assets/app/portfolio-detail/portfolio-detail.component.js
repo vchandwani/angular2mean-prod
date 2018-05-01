@@ -221,6 +221,9 @@ var PortfolioDetailComponent = /** @class */ (function () {
                     _loop_2(detail);
                 }
                 ;
+            }, function (error) {
+                _this.spinnerService.hide();
+                //console.error(error)
             });
             _this.spinnerService.hide();
         }, function (error) {
