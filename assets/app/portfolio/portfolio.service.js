@@ -14,10 +14,6 @@ var PortfolioService = /** @class */ (function () {
     }
     PortfolioService.prototype.getNames = function () {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
         return this.http.get(API.api_url + API.portfolioNames)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
@@ -34,10 +30,6 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.getMutualFundNames = function () {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
         return this.http.get(API.api_url + API.mutualFundNames)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
@@ -54,10 +46,6 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.getPortfolioDetails = function () {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
         return this.http.get(API.api_url + API.portfolio)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
@@ -76,10 +64,6 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.getAllMonthlyData = function () {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
         return this.http.get(API.api_url + API.portfolioMonthly)
             .map(function (response) {
             var portfolioMonthlyDetails = response.json().obj;
@@ -97,11 +81,7 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.getActiveFunds = function () {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
-        return this.http.get(API.api_url + API.fundWise + token)
+        return this.http.get(API.api_url + API.fundWise)
             .map(function (response) {
             var activeFundsDetails = response.json().obj;
             var activeFundName = [];
@@ -117,11 +97,7 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.getFundLastEntry = function (name) {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
-        return this.http.get(API.api_url + API.fundLastEntry + token, {
+        return this.http.get(API.api_url + API.fundLastEntry, {
             params: {
                 name: name
             }
@@ -147,11 +123,7 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.getLastEntry = function () {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
-        return this.http.get(API.api_url + API.lastEntry + token)
+        return this.http.get(API.api_url + API.lastEntry)
             .map(function (response) {
             var details = response.json().obj;
             var lastEntries = [];
@@ -167,11 +139,7 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.zeroEntries = function () {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
-        return this.http.get(API.api_url + API.zeroLastEntry + token)
+        return this.http.get(API.api_url + API.zeroLastEntry)
             .map(function (response) {
             var zeroActiveFundLastDetail = response.json().obj;
             return zeroActiveFundLastDetail;
@@ -183,12 +151,10 @@ var PortfolioService = /** @class */ (function () {
     };
     PortfolioService.prototype.fundZeroEntries = function (obj, fromDate, toDate) {
         var _this = this;
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         var startDate = fromDate;
         var endDate = toDate;
         var api = API.api_url + API.dataForDates;
-        return this.http.get(API.api_url + API.dataForDates + token, {
+        return this.http.get(API.api_url + API.dataForDates, {
             params: {
                 name: obj._id,
                 startDate: startDate,
