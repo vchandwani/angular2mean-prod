@@ -85,7 +85,6 @@ export class PortfolioComponent implements OnInit {
         this.portfolioService.getActiveFunds()
             .subscribe(
                 data => {
-                    console.log('data'+data);
                     this.rows = data;
                     let i = 0;
                     this.rows.forEach((item) => {
@@ -136,7 +135,7 @@ export class PortfolioComponent implements OnInit {
                 },
                 error => {
                     this.spinnerService.hide();
-                    console.error(error)
+                    // console.error(error)
                 }
             );
     }
@@ -149,6 +148,7 @@ export class PortfolioComponent implements OnInit {
                 data => {
                     let k = 0;
                     let i = 0;
+                    console.log('1'+data);
                     this.rows = data;
                     this.rows.forEach((item) => {
                         if (this.tempUID.indexOf(item.uid) < 0) {
@@ -158,9 +158,11 @@ export class PortfolioComponent implements OnInit {
                                 this.portfolioService.latestValue(item.uid, item.type)
                                     .subscribe(
                                         data => {
+                                            console.log('2 '+data);
                                             this.portfolioService.updateLatestValue(item.uid, item.type, data)
                                                 .subscribe(
                                                     data => {
+                                                        console.log('3 '+data);
                                                         k++;
                                                         if (k == this.rows.length) {
                                                             this.spinnerService.hide();
