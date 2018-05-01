@@ -1,23 +1,39 @@
 import { Component } from "@angular/core";
 import { MessageService } from "./message.service";
 import { Message } from "./message.model";
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 var MessageInputComponent = /** @class */ (function () {
-    function MessageInputComponent(messageService) {
+    function MessageInputComponent(spinnerService, messageService) {
+        this.spinnerService = spinnerService;
         this.messageService = messageService;
     }
     MessageInputComponent.prototype.onSubmit = function (form) {
+        var _this = this;
+        this.spinnerService.show();
         if (this.message) {
             // Edit
             this.message.content = form.value.content;
             this.messageService.updateMessage(this.message)
-                .subscribe(function (result) { return console.log(result); });
+                .subscribe(function (data) {
+                _this.spinnerService.hide();
+            }, function (error) {
+                _this.spinnerService.hide();
+                //console.error(error)
+            }
+            //result => console.log(result)
+            );
             this.message = null;
         }
         else {
             // Create
-            var message = new Message(form.value.content, 'Max');
+            var message = new Message(form.value.content, 'Varun');
             this.messageService.addMessage(message)
-                .subscribe(function (data) { return console.log(data); });
+                .subscribe(function (data) {
+                _this.spinnerService.hide();
+            }, function (error) {
+                _this.spinnerService.hide();
+                //console.error(error)
+            });
         }
         form.resetForm();
     };
@@ -37,6 +53,7 @@ var MessageInputComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     MessageInputComponent.ctorParameters = function () { return [
+        { type: Ng4LoadingSpinnerService, },
         { type: MessageService, },
     ]; };
     return MessageInputComponent;

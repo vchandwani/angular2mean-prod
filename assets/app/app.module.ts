@@ -24,14 +24,24 @@ import { ChartsModule } from 'ng2-charts';
 // import { PortfolioComponent } from "./portfolio/portfolio.component";
 // import { PortfolioListComponent } from "./portfolio/portfolio-list.component";
 // import { PortfolioInputComponent } from "./portfolio/portfolio-input.component";
-import { MessageModule } from "./messages/message.module";
+// import { MessageModule } from "./messages/message.module";
+import { MessagesComponent } from "./messages/messages.component";
+import { MessageListComponent } from "./messages/message-list.component";
+import { MessageComponent } from "./messages/message.component";
+import { MessageInputComponent } from "./messages/message-input.component";
+import { MessageService } from "./messages/message.service";
+
 
 @NgModule({   
     declarations: [
         AppComponent,
         AuthenticationComponent,
         HeaderComponent,
-        ErrorComponent
+        ErrorComponent,
+        MessagesComponent,
+        MessageListComponent,
+        MessageComponent,
+        MessageInputComponent
     ], 
     imports: [
         CommonModule,
@@ -53,9 +63,9 @@ import { MessageModule } from "./messages/message.module";
         DialogModule,
         CalendarModule,
         SelectModule,
-        MessageModule
+        // MessageModule
     ],
-    providers: [AuthService, ErrorService
+    providers: [AuthService, ErrorService,MessageService
     ],
     bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 
 import { MessageService } from "./message.service";
 import { Message } from "./message.model";
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-message-input',
@@ -11,24 +12,37 @@ import { Message } from "./message.model";
 export class MessageInputComponent implements OnInit {
     message: Message;
 
-    constructor(private messageService: MessageService) {}
+    constructor(private spinnerService: Ng4LoadingSpinnerService,private messageService: MessageService) {}
 
     onSubmit(form: NgForm) {
+        this.spinnerService.show();
         if (this.message) {
             // Edit
             this.message.content = form.value.content;
             this.messageService.updateMessage(this.message)
                 .subscribe(
-                    result => console.log(result)
+                    data => {
+                        this.spinnerService.hide();
+                    },
+                    error => {
+                        this.spinnerService.hide();
+                        //console.error(error)
+                    }
+                    //result => console.log(result)
                 );
             this.message = null;
         } else {
             // Create
-            const message = new Message(form.value.content, 'Max');
+            const message = new Message(form.value.content, 'Varun');
             this.messageService.addMessage(message)
                 .subscribe(
-                    data => console.log(data),
-                    // error => console.error(error)
+                    data => {
+                        this.spinnerService.hide();
+                    },
+                    error => {
+                        this.spinnerService.hide();
+                        //console.error(error)
+                    }
                 );
         }
         form.resetForm();
