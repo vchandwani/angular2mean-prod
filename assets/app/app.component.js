@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { MessageService } from "./messages/message.service";
 import { AuthService } from "./auth/auth.service";
+import { PortfolioService } from "./portfolio/portfolio.service";
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 var AppComponent = /** @class */ (function () {
-    function AppComponent(spinnerService, messageService, authService) {
+    function AppComponent(spinnerService, messageService, authService, portfolioService) {
         this.spinnerService = spinnerService;
         this.messageService = messageService;
         this.authService = authService;
+        this.portfolioService = portfolioService;
         this.title = 'Mean Stack';
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -23,6 +25,7 @@ var AppComponent = /** @class */ (function () {
         { type: Ng4LoadingSpinnerService, },
         { type: MessageService, },
         { type: AuthService, },
+        { type: PortfolioService, },
     ]; };
     return AppComponent;
 }());

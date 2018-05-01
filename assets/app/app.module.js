@@ -16,8 +16,12 @@ import { ErrorComponent } from "./errors/error.component";
 import { ErrorService } from "./errors/error.service";
 import { DataTableModule, SharedModule, DialogModule, DataGridModule, InputTextModule, ButtonModule } from 'primeng/primeng';
 import { TableModule } from 'primeng/table';
+import { PortfolioDetailModule } from "./portfolio-detail/portfolio-detail.module";
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ChartsModule } from 'ng2-charts';
+import { PortfolioComponent } from "./portfolio/portfolio.component";
+import { PortfolioListComponent } from "./portfolio/portfolio-list.component";
+import { PortfolioInputComponent } from "./portfolio/portfolio-input.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { MessageListComponent } from "./messages/message-list.component";
 import { MessageComponent } from "./messages/message.component";
@@ -33,6 +37,9 @@ var AppModule = /** @class */ (function () {
                         AuthenticationComponent,
                         HeaderComponent,
                         ErrorComponent,
+                        PortfolioComponent,
+                        PortfolioListComponent,
+                        PortfolioInputComponent,
                         MessagesComponent,
                         MessageListComponent,
                         MessageComponent,
@@ -45,7 +52,7 @@ var AppModule = /** @class */ (function () {
                         BrowserAnimationsModule,
                         routing,
                         HttpModule,
-                        // PortfolioDetailModule,
+                        PortfolioDetailModule,
                         Ng4LoadingSpinnerModule.forRoot(),
                         Ng2OdometerModule.forRoot(),
                         ChartsModule,
