@@ -7,6 +7,16 @@ var PortfolioComponent = /** @class */ (function () {
         this.spinnerService = spinnerService;
         this.portfolioService = portfolioService;
         this.errorService = errorService;
+        this.doughnutChartOptions = {
+            legend: {
+                position: 'top',
+                display: true,
+                labels: {
+                    fontColor: '#e2e2e2',
+                    fontSize: 16
+                }
+            }
+        };
         this.rows = [];
         this.tempUID = [];
         this.tempNames = [];
@@ -22,7 +32,7 @@ var PortfolioComponent = /** @class */ (function () {
         this.stockChartLabelsMain = [];
         this.chartDataMain = [];
         this.stockChartDataMain = [];
-        this.doughnutChartType = 'doughnut';
+        this.doughnutChartType = 'pie';
         this.polarAreaChartType = 'polarArea';
         this.polarAreaLegend = true;
         this.pieChartType = 'pie';
@@ -196,7 +206,7 @@ var PortfolioComponent = /** @class */ (function () {
         { type: Component, args: [{
                     selector: 'app-portfolio',
                     styles: ["\n        .chart {display: block; width: 100%;}\n    "],
-                    template: "\n    <div class=\"col-md-4 col-sm-4\">\n        <button class=\"btn btn-primary\" (click)=\"latestPrices()\">Get Latest Prices</button>\n    </div>\n    <div class=\"col-md-4 col-sm-4\">\n        <button class=\"btn btn-primary\" (click)=\"duplicateZero()\">Duplicate Zero Value Stocks/Funds</button>\n    </div>\n    <div class=\"col-md-4 col-sm-4\">\n        <nav class=\"col-md-8 col-md-offset-2\">\n            <ul class=\"nav nav-pills\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"['/portfolio-input']\">Portfolio Entry</a></li>\n            </ul>\n        </nav>\n    </div>\n    <div class=\"col-md-12\">\n        <h3>\n        Total : \n            <ng2-odometer \n                [number]=\"totalAmount\"></ng2-odometer>        \n        </h3>\n    </div>\n    <div class=\"col-md-12\">\n        <h3>\n        Stock Total : \n            <ng2-odometer \n                [number]=\"totalMutualFundAmount\" \n                ></ng2-odometer>        \n        </h3>\n    </div>\n    <div style=\"display: block\">\n        <canvas baseChart *ngIf=\"chartDisplay\" [data]=\"chartDataMain\" [labels]=\"chartLabelsMain\" [chartType]=\"doughnutChartType\"></canvas>\n    </div>\n    <div class=\"col-md-12\">\n        <h3>\n        Mutual Fund Total : \n            <ng2-odometer \n                [number]=\"totalStockAmount\" \n                ></ng2-odometer>        \n        </h3>\n    </div>\n    <div style=\"display: block\">\n        <canvas baseChart *ngIf=\"stockChartDisplay\" [data]=\"stockChartDataMain\" [labels]=\"stockChartLabelsMain\" [chartType]=\"doughnutChartType\"></canvas>\n    </div>\n    "
+                    template: "\n    <div class=\"col-md-4 col-sm-4\">\n        <button class=\"btn btn-primary\" (click)=\"latestPrices()\">Get Latest Prices</button>\n    </div>\n    <div class=\"col-md-4 col-sm-4\">\n        <button class=\"btn btn-primary\" (click)=\"duplicateZero()\">Duplicate Zero Value Stocks/Funds</button>\n    </div>\n    <div class=\"col-md-4 col-sm-4\">\n        <nav class=\"col-md-8 col-md-offset-2\">\n            <ul class=\"nav nav-pills\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"['/portfolio-input']\">Portfolio Entry</a></li>\n            </ul>\n        </nav>\n    </div>\n    <div class=\"col-md-12\">\n        <h3>\n        Total : \n            <ng2-odometer \n                [number]=\"totalAmount\"></ng2-odometer>        \n        </h3>\n    </div>\n    <div class=\"col-md-12\">\n        <h3>\n        Stock Total : \n            <ng2-odometer \n                [number]=\"totalMutualFundAmount\" \n                ></ng2-odometer>        \n        </h3>\n    </div>\n    <div style=\"display: block\">\n        <canvas baseChart *ngIf=\"chartDisplay\" [options]=\"doughnutChartOptions\" [data]=\"chartDataMain\" [labels]=\"chartLabelsMain\" [chartType]=\"doughnutChartType\"></canvas>\n    </div>\n    <div class=\"col-md-12\">\n        <h3>\n        Mutual Fund Total : \n            <ng2-odometer \n                [number]=\"totalStockAmount\" \n                ></ng2-odometer>        \n        </h3>\n    </div>\n    <div style=\"display: block\">\n        <canvas baseChart *ngIf=\"stockChartDisplay\" [options]=\"doughnutChartOptions\" [data]=\"stockChartDataMain\" [labels]=\"stockChartLabelsMain\" [chartType]=\"doughnutChartType\"></canvas>\n    </div>\n    "
                 },] },
     ];
     /** @nocollapse */

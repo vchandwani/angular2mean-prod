@@ -94,7 +94,7 @@ var PortfolioDetailComponent = /** @class */ (function () {
                         }
                         if (_this.tempArrayMain[timeMain]['names'].indexOf(nameWise.Name) < 0) {
                             // Check whether name alread pushes to avoid duplicate for the Month
-                            // Check whether name alread pushes to avoid duplicate for the Month                                        
+                            // Check whether name alread pushes to avoid duplicate for the Month 
                             _this.tempArrayMain[timeMain]['names'].push(nameWise.Name);
                             if (!_this.tempArrayMain[timeMain]['amount']) {
                                 _this.tempArrayMain[timeMain]['amount'] = Array();
@@ -126,8 +126,8 @@ var PortfolioDetailComponent = /** @class */ (function () {
                                 _this.lineChartLabels.push(new Date(time).getDay() + '-' + _this.month[new Date(time).getMonth()] + '-' + new Date(time).getFullYear());
                             }
                             else if (y_1 == _this.tempMonthMain.length) {
-                                // Get altest price and add it to main Item array
-                                // Get altest price and add it to main Item array
+                                // Get latest price and add it to main Item array
+                                // Get latest price and add it to main Item array
                                 _this.totalAmount = parseInt(localStorage.getItem('totalAmount'));
                                 var tempArray_1 = Array();
                                 var time_1 = item;
@@ -138,8 +138,32 @@ var PortfolioDetailComponent = /** @class */ (function () {
                                 mainItem_1['main'].push(tempArray_1);
                                 _this.mainOptions.push({
                                     title: { text: 'Portfolio Total' },
+                                    xAxis: {
+                                        crosshair: true
+                                    },
+                                    yAxis: {
+                                        opposite: true,
+                                        crosshair: {
+                                            label: {
+                                                enabled: true,
+                                                format: '{value:.2f}'
+                                            }
+                                        },
+                                        labels: {
+                                            align: 'left',
+                                            format: '{value:.2f}',
+                                            y: 6,
+                                            x: 2
+                                        }
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            color: '#1f872b'
+                                        }
+                                    },
                                     series: [{
                                             name: 'Portfolio Total',
+                                            type: 'area',
                                             data: mainItem_1['main'],
                                             tooltip: {
                                                 valueDecimals: 2
@@ -175,6 +199,29 @@ var PortfolioDetailComponent = /** @class */ (function () {
                         if (portfolio[0].type == 'MF') {
                             _this.options.push({
                                 title: { text: name_1 },
+                                xAxis: {
+                                    crosshair: true
+                                },
+                                yAxis: {
+                                    opposite: true,
+                                    crosshair: {
+                                        label: {
+                                            enabled: true,
+                                            format: '{value:.2f}'
+                                        }
+                                    },
+                                    labels: {
+                                        align: 'left',
+                                        format: '{value:.2f}',
+                                        y: 6,
+                                        x: 2
+                                    }
+                                },
+                                plotOptions: {
+                                    series: {
+                                        color: '#1f872b'
+                                    }
+                                },
                                 series: [{
                                         name: name_1,
                                         data: nameItems[name_1],
@@ -192,6 +239,29 @@ var PortfolioDetailComponent = /** @class */ (function () {
                         else if (portfolio[0].type == 'Stock') {
                             _this.stockOptions.push({
                                 title: { text: name_1 },
+                                xAxis: {
+                                    crosshair: true
+                                },
+                                yAxis: {
+                                    opposite: true,
+                                    crosshair: {
+                                        label: {
+                                            enabled: true,
+                                            format: '{value:.2f}'
+                                        }
+                                    },
+                                    labels: {
+                                        align: 'left',
+                                        format: '{value:.2f}',
+                                        y: 6,
+                                        x: 2
+                                    }
+                                },
+                                plotOptions: {
+                                    series: {
+                                        color: '#1f872b'
+                                    }
+                                },
                                 series: [{
                                         name: name_1,
                                         data: nameItems[name_1],
@@ -234,8 +304,8 @@ var PortfolioDetailComponent = /** @class */ (function () {
     PortfolioDetailComponent.decorators = [
         { type: Component, args: [{
                     selector: 'app-portfolio-detail',
-                    styles: ["\n      chart {\n        display: block; \n      }\n    "],
-                    template: "\n    <!--<div class=\"row\">\n        <div class=\"col-md-12\">\n            <div style=\"display: block;\" *ngIf=\"chartDisplay\">\n                <canvas baseChart width=\"100%\" [datasets]=\"lineChartData\" [labels]=\"lineChartLabels\" [options]=\"lineChartOptions\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"></canvas>\n            </div>\n        </div>\n    </div>-->\n    <div *ngFor=\"let optionsVal of mainOptions\">\n        <chart type=\"StockChart\" [options]=\"optionsVal\"></chart>\n    </div>\n    <ul class=\"nav nav-pills\">\n        <li class=\"active\"><a data-toggle=\"pill\" href=\"portfolio-detail#mutual_funds\">Mutual Funds</a></li>\n        <li><a data-toggle=\"pill\" href=\"portfolio-detail#stocks\">Stocks</a></li>\n    </ul>\n    <div class=\"tab-content\">\n        <div id=\"mutual_funds\" class=\"tab-pane fade in active\">\n            <h3>Mutual Funds</h3>\n            <div *ngFor=\"let optionsVal of options\">\n                <chart type=\"StockChart\" [options]=\"optionsVal\"></chart>\n            </div>\n            <!--<div class=\"row\" *ngIf=\"mutualDisplay\">\n                <div class=\"col-md-12\" *ngFor=\"let optionsVal of mutualOptionsChart\">\n                    <div style=\"display: block;\">\n                        <canvas baseChart width=\"100%\" [datasets]=\"optionsVal.series\" [labels]=\"optionsVal.label\" [options]=\"lineChartOptions\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"></canvas>\n                    </div>\n                </div>                \n            </div>-->\n        </div>\n        <div id=\"stocks\" class=\"tab-pane fade\">\n            <h3>Stocks</h3>\n            <div *ngFor=\"let optionsVal of stockOptions\">\n                <chart type=\"StockChart\" [options]=\"optionsVal\"></chart>\n            </div>\n            <!--<div class=\"row\" *ngIf=\"stockDisplay\">\n                <div class=\"col-md-12\" *ngFor=\"let optionsVal of stockOptionsChart\">\n                    <div style=\"display: block;\">\n                        <canvas baseChart width=\"100%\" [datasets]=\"optionsVal.series\" [labels]=\"optionsVal.label\" [options]=\"lineChartOptions\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"></canvas>\n                    </div>\n                </div>                \n            </div>-->\n        </div>\n    </div>\n"
+                    styles: ["\n chart {\n display: block; \n }\n "],
+                    template: "\n        <!--<div class=\"row\">\n            <div class=\"col-md-12\">\n                <div style=\"display: block;\" *ngIf=\"chartDisplay\">\n                <canvas baseChart width=\"100%\" [datasets]=\"lineChartData\" [labels]=\"lineChartLabels\" [options]=\"lineChartOptions\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"></canvas>\n                </div>\n            </div>\n        </div>-->\n        <div class=\"spacing\" *ngFor=\"let optionsVal of mainOptions\">\n            <chart type=\"StockChart\" [options]=\"optionsVal\"></chart>\n        </div>\n        <ul class=\"nav nav-pills\">\n            <li class=\"active\"><a data-toggle=\"pill\" href=\"portfolio-detail#mutual_funds\">Mutual Funds</a></li>\n            <li><a data-toggle=\"pill\" href=\"portfolio-detail#stocks\">Stocks</a></li>\n        </ul>\n        <div class=\"tab-content\">\n            <div id=\"mutual_funds\" class=\"tab-pane fade in active\">\n                <h3>Mutual Funds</h3>\n                <div class=\"spacing\" *ngFor=\"let optionsVal of options\">\n                    <chart type=\"StockChart\" [options]=\"optionsVal\"></chart>\n                </div>\n                <!--<div class=\"row\" *ngIf=\"mutualDisplay\">\n                    <div class=\"col-md-12\" *ngFor=\"let optionsVal of mutualOptionsChart\">\n                        <div style=\"display: block;\">\n                            <canvas baseChart width=\"100%\" [datasets]=\"optionsVal.series\" [labels]=\"optionsVal.label\" [options]=\"lineChartOptions\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"></canvas>\n                        </div>\n                    </div> \n                </div>-->\n            </div>\n            <div id=\"stocks\" class=\"tab-pane fade\">\n                <h3>Stocks</h3>\n                <div *ngFor=\"let optionsVal of stockOptions\">\n                    <chart type=\"StockChart\" [options]=\"optionsVal\"></chart>\n                </div>\n                <!--<div class=\"row\" *ngIf=\"stockDisplay\">\n                    <div class=\"col-md-12\" *ngFor=\"let optionsVal of stockOptionsChart\">\n                        <div style=\"display: block;\">\n                            <canvas baseChart width=\"100%\" [datasets]=\"optionsVal.series\" [labels]=\"optionsVal.label\" [options]=\"lineChartOptions\" [chartType]=\"lineChartType\" (chartHover)=\"chartHovered($event)\"></canvas>\n                        </div>\n                    </div> \n                </div>-->\n            </div>\n        </div>\n"
                 },] },
     ];
     /** @nocollapse */

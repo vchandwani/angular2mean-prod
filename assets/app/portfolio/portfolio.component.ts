@@ -38,7 +38,7 @@ import { ErrorService } from "../errors/error.service";
         </h3>
     </div>
     <div style="display: block">
-        <canvas baseChart *ngIf="chartDisplay" [data]="chartDataMain" [labels]="chartLabelsMain" [chartType]="doughnutChartType"></canvas>
+        <canvas baseChart *ngIf="chartDisplay" [options]="doughnutChartOptions" [data]="chartDataMain" [labels]="chartLabelsMain" [chartType]="doughnutChartType"></canvas>
     </div>
     <div class="col-md-12">
         <h3>
@@ -49,12 +49,22 @@ import { ErrorService } from "../errors/error.service";
         </h3>
     </div>
     <div style="display: block">
-        <canvas baseChart *ngIf="stockChartDisplay" [data]="stockChartDataMain" [labels]="stockChartLabelsMain" [chartType]="doughnutChartType"></canvas>
+        <canvas baseChart *ngIf="stockChartDisplay" [options]="doughnutChartOptions" [data]="stockChartDataMain" [labels]="stockChartLabelsMain" [chartType]="doughnutChartType"></canvas>
     </div>
     `
 })
 export class PortfolioComponent implements OnInit {
-    constructor(private spinnerService: Ng4LoadingSpinnerService, private portfolioService: PortfolioService, private errorService: ErrorService) { }
+    public doughnutChartOptions: any = {
+        legend: {
+            position: 'top',
+            display: true,
+            labels: {
+                fontColor: '#e2e2e2',
+                fontSize: 16
+            }
+        }
+    };
+    constructor(private spinnerService: Ng4LoadingSpinnerService, private portfolioService: PortfolioService, private errorService: ErrorService) {}
     rows = [];
     tempUID = [];
     tempNames = [];
@@ -70,7 +80,7 @@ export class PortfolioComponent implements OnInit {
     public stockChartLabelsMain: string[] = [];
     public chartDataMain: number[] = [];
     public stockChartDataMain: number[] = [];
-    public doughnutChartType: string = 'doughnut';
+    public doughnutChartType: string = 'pie';
     public polarAreaChartType: string = 'polarArea';
     public polarAreaLegend: boolean = true;
     public pieChartType: string = 'pie';
