@@ -6,6 +6,7 @@ var jwt = require('jsonwebtoken');
 var Portfolio = require('../models/portfolio');
 var Fundname = require('../models/fundname');
 
+
 router.get('/', function (req, res, next) {
     Portfolio.find()
         .sort('Date')
@@ -22,6 +23,7 @@ router.get('/', function (req, res, next) {
             });
         });
 });
+
 router.get('/names', function (req, res, next) {
     Fundname.find({})
         .exec(function (err, portfolioNames) {
