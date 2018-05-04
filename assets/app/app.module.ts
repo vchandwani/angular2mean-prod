@@ -21,6 +21,7 @@ import { PortfolioDetailModule } from "./portfolio-detail/portfolio-detail.modul
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { ChartsModule } from 'ng2-charts';
 import { PortfolioService } from "./portfolio/portfolio.service";
+import { PortfoliosComponent } from "./portfolio/portfolios.component";
 import { PortfolioComponent } from "./portfolio/portfolio.component";
 import { PortfolioListComponent } from "./portfolio/portfolio-list.component";
 import { PortfolioInputComponent } from "./portfolio/portfolio-input.component";
@@ -38,6 +39,7 @@ import { MessageService } from "./messages/message.service";
         HeaderComponent,
         ErrorComponent,
         PortfolioComponent,
+        PortfoliosComponent,
         PortfolioListComponent,
         PortfolioInputComponent,
         MessagesComponent,

@@ -8,61 +8,14 @@ import { ErrorService } from "../errors/error.service";
     styles: [`
         .chart {display: block; width: 100%;}
     `],
-    template: `
-    <div class="row">
-        <div class="col-md-3 col-sm-3">
-            <a class="btn btn-primary" (click)="latestPrices()">Get Latest Prices</a>
-        </div>
-        <div class="col-md-6 col-sm-6">
-            <a class="btn btn-primary" (click)="duplicateZero()">Duplicate Zero Value Stocks/Funds</a>
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <a class="btn btn-primary" [routerLink]="['/portfolio-input']">Portfolio Entry</a>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <h3>
-        Total : 
-            <ng2-odometer 
-                [number]="totalAmount"></ng2-odometer>        
-        </h3>
-    </div>
-    <div class="col-md-12">
-        <h3>
-        Stock Total : 
-            <ng2-odometer 
-                [number]="totalMutualFundAmount" 
-                ></ng2-odometer>        
-        </h3>
-    </div>
-    <div style="display: block">
-        <canvas baseChart *ngIf="chartDisplay" [options]="doughnutChartOptions" [data]="chartDataMain" [labels]="chartLabelsMain" [chartType]="doughnutChartType"></canvas>
-    </div>
-    <div class="col-md-12">
-        <h3>
-        Mutual Fund Total : 
-            <ng2-odometer 
-                [number]="totalStockAmount" 
-                ></ng2-odometer>        
-        </h3>
-    </div>
-    <div style="display: block">
-        <canvas baseChart *ngIf="stockChartDisplay" [options]="doughnutChartOptions" [data]="stockChartDataMain" [labels]="stockChartLabelsMain" [chartType]="doughnutChartType"></canvas>
-    </div>
-    `
+    templateUrl: './portfolio.component.html'
+
 })
 export class PortfolioComponent implements OnInit {
-    public doughnutChartOptions: any = {
-        legend: {
-            position: 'top',
-            display: true,
-            labels: {
-                fontColor: '#e2e2e2',
-                fontSize: 16
-            }
-        }
-    };
-    constructor(private spinnerService: Ng4LoadingSpinnerService, private portfolioService: PortfolioService, private errorService: ErrorService) {}
+    public mutualChartColors:Array<any> = [{backgroundColor: []}];
+    public stockChartColors:Array<any> = [{backgroundColor: []}];
+    public doughnutChartOptions: any = { 'responsive': true,'maintainAspectRatio':true,'transparencyEffects':true};
+    constructor(private spinnerService: Ng4LoadingSpinnerService, private portfolioService: PortfolioService, private errorService: ErrorService) { }
     rows = [];
     tempUID = [];
     tempNames = [];
@@ -116,12 +69,14 @@ export class PortfolioComponent implements OnInit {
                                             this.chartDataMain.push(item.latestPrice * item.unit);
                                             this.totalMutualFundAmount += item.latestPrice * item.unit;
                                             localStorage.setItem('totalMutualFundAmount', this.totalMutualFundAmount.toString());
+                                            this.mutualChartColors[0].backgroundColor.push('#'+Math.floor(10000 + Math.random() * 900000));
                                             z++;
                                         } else if (item.type = 'Stock' && this.activeStocks.indexOf(item._id) > -1) {
                                             this.stockChartLabelsMain.push(item._id);
                                             this.stockChartDataMain.push(item.latestPrice * item.unit);
                                             this.totalStockAmount += item.latestPrice * item.unit;
                                             localStorage.setItem('totalStockAmount', this.totalStockAmount.toString());
+                                            this.stockChartColors[0].backgroundColor.push('#'+Math.floor(10000 + Math.random() * 900000));
                                             k++;
                                         }
                                     });

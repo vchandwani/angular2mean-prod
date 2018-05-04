@@ -17,5 +17,5 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.spinnerService.hide();
     }
-    title = 'Mean Stack';
+    title = 'VC35 Portal';
 }

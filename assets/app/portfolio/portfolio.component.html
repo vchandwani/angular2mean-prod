@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-6 text-center">
+        <a class="btn btn-primary" (click)="latestPrices()">Get Latest Prices</a>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 text-center">
+        <a class="btn btn-primary" (click)="duplicateZero()">Duplicate Zero Value Stocks/Funds</a>
+    </div>
+</div>
+<div class="row">
+    <h3 class="col-xs-push-1 col-xs-10">
+        Total :
+        <ng2-odometer [number]="totalAmount"></ng2-odometer>
+    </h3>
+</div>
+<div class="row">
+    <h3 class="col-xs-push-1 col-xs-10">
+        Mutual Fund Total :
+        <ng2-odometer [number]="totalMutualFundAmount"></ng2-odometer>
+    </h3>
+</div>
+<div class="row" style="display: block">
+    <canvas class="chartStyle" baseChart *ngIf="chartDisplay" id="mutualChart" [options]="doughnutChartOptions" [data]="chartDataMain" [labels]="chartLabelsMain" [legend]="false"  [chartType]="doughnutChartType"  [colors]=mutualChartColors></canvas>
+</div>
+<div class="row border-top">
+    <h6 class="col-xs-6 col-sm-4 flex" *ngFor="let val of chartLabelsMain; let index=index">
+        <span class="col-xs-2 colorDisplay" [style.background-color]="mutualChartColors[0].backgroundColor[index]"></span>  
+        <span class="col-xs-10 nameDisplay">{{val}}</span>
+    </h6>
+</div>
+<div class="row">
+    <h3 class="col-xs-push-1 col-xs-10">
+        Stock Total :
+        <ng2-odometer [number]="totalStockAmount"></ng2-odometer>
+    </h3>
+</div>
+<div class="row" style="display: block">
+    <canvas class="chartStyle" baseChart *ngIf="stockChartDisplay" id="stockChart" [options]="doughnutChartOptions" [data]="stockChartDataMain" [labels]="stockChartLabelsMain" [legend]="false" [chartType]="doughnutChartType" [colors]=stockChartColors></canvas>
+</div>
+<div class="row border-top">
+    <h6 class="col-xs-6 col-sm-4 flex" *ngFor="let val of stockChartLabelsMain; let index=index">
+        <span class="col-xs-2 colorDisplay" [style.background-color]="stockChartColors[0].backgroundColor[index]"></span>  
+        <span class="col-xs-10 nameDisplay">{{val}}</span>
+    </h6>
+</div>

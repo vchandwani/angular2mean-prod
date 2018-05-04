@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #2f2f2f;
 }
@@ -156,5 +155,38 @@ rect.highcharts-button-box {
 
 .text-color {
   color: #e2e2e2;
+}
+
+.header-icon {
+  float: left;
+  padding: 10px 5px 5px 5px;
+  width: 50px;
+  height: auto;
+}
+
+.colorDisplay {
+  margin-left: 10px;
+  border: 1px solid #a3a3a3;
+  height: 20px;
+}
+
+.nameDisplay {
+  text-align: left;
+  padding: 0px 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.border-top {
+  border-top: 1px solid #fff;
+  margin-top: 10px;
+}
+
+.chartStyle {
+  max-width: 800px;
+  max-height: 800px;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=style.css.map */
