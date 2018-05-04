@@ -1,5 +1,5 @@
 export default {
-    api_url: 'http://localhost:3000/',
+    api_url: 'https://sheltered-caverns-71469.herokuapp.com/',
     message: 'message',
     user: 'user',
     userSignIn: 'user/signin',
