@@ -8,7 +8,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     selector: 'app-portfolio-list',
     template: `        
         <div class="col-md-8 col-md-offset-2">
-            <p-table #dt [columns]="cols" [value]="portfolios" [paginator]="true" sortMode="multiple" [rows]="20">
+            <p-table #dt [columns]="cols" [value]="portfolios" [paginator]="true" sortMode="multiple" [rows]="20" [responsive]="true">
                 <ng-template pTemplate="caption">
                     <div style="text-align: right">
                         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
