@@ -173,6 +173,8 @@ rect.highcharts-button-box {
 .nameDisplay {
   text-align: left;
   padding: 0px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .flex {
@@ -188,5 +190,13 @@ rect.highcharts-button-box {
   max-width: 800px;
   max-height: 800px;
   margin: 0 auto;
+}
+
+.ui-table-wrapper, .ui-table-caption .ui-widget-header {
+  overflow: scroll;
+}
+
+.ui-inputtext {
+  max-width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
