@@ -20,7 +20,7 @@ var AuthService = /** @class */ (function () {
             return Observable.throw(response.json());
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -31,7 +31,7 @@ var AuthService = /** @class */ (function () {
         return this.http.post(API.api_url + API.userSignIn, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json()), error.status;
             return Observable.throw(error.json());
         });
     };

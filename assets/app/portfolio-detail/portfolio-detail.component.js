@@ -280,6 +280,7 @@ var PortfolioDetailComponent = /** @class */ (function () {
                         if (_this.portfolioNames.length == _this.mutualOptionsChart.length + _this.stockOptionsChart.length) {
                             _this.stockDisplay = true;
                             _this.mutualDisplay = true;
+                            _this.spinnerService.hide();
                         }
                     }, function (error) {
                         _this.spinnerService.hide();
@@ -295,7 +296,6 @@ var PortfolioDetailComponent = /** @class */ (function () {
                 _this.spinnerService.hide();
                 //console.error(error)
             });
-            _this.spinnerService.hide();
         }, function (error) {
             _this.spinnerService.hide();
             //console.error(error)

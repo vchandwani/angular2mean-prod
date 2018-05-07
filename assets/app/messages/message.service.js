@@ -30,13 +30,16 @@ var MessageService = /** @class */ (function () {
             }
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     MessageService.prototype.getMessages = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.message)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.message + token)
             .map(function (response) {
             var messages = response.json().obj;
             var transformedMessages = [];
@@ -48,7 +51,7 @@ var MessageService = /** @class */ (function () {
             return transformedMessages;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -67,7 +70,7 @@ var MessageService = /** @class */ (function () {
             _this.errorService.handleSuccess(response.json());
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -82,7 +85,7 @@ var MessageService = /** @class */ (function () {
             _this.errorService.handleSuccess(response.json());
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };

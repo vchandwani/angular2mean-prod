@@ -19,6 +19,9 @@ var MessageListComponent = /** @class */ (function () {
             .subscribe(function (messages) {
             _this.messages = messages;
             _this.spinnerService.hide();
+        }, function (error) {
+            _this.spinnerService.hide();
+            //console.error(error)
         });
     };
     MessageListComponent.prototype.onEdit = function (message) {

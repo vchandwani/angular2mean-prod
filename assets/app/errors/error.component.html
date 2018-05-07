@@ -3,7 +3,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" aria-label="Close" (click)="onErrorHandled()"><span aria-hidden="true">&times;</span></button>
+                <button *ngIf="status != 401"  type="button" class="close" aria-label="Close" (click)="onErrorHandled()"><span aria-hidden="true">&times;</span></button>
+                <button *ngIf="status == 401"  type="button" class="close" aria-label="Close" (click)="signIn()"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">
                     <i class="material-icons green" [ngStyle]="{'display': displaySuccess}">add_alert</i>
                     <i class="material-icons red" [ngStyle]="{'display': displayError}">warning</i>
@@ -14,7 +15,8 @@
                 <p>{{ error?.message }}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" (click)="onErrorHandled()">Close</button>
+                <button *ngIf="status != 401" type="button" class="btn btn-default" (click)="onErrorHandled()">Close</button>
+                <button *ngIf="status == 401" type="button" class="btn btn-default" (click)="signIn()">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -14,7 +14,10 @@ var PortfolioService = /** @class */ (function () {
     }
     PortfolioService.prototype.getNames = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.portfolioNames)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.portfolioNames + token)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
             var portfolioNames = [];
@@ -24,13 +27,16 @@ var PortfolioService = /** @class */ (function () {
             return portfolioNames;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.getMutualFundNames = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.mutualFundNames)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.mutualFundNames + token)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
             var portfolioNames = [];
@@ -40,13 +46,16 @@ var PortfolioService = /** @class */ (function () {
             return portfolioNames;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.getPortfolioDetails = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.portfolio)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.portfolio + token)
             .map(function (response) {
             var portfolioDetails = response.json().obj;
             var transformedPortfolioDetail = [];
@@ -58,13 +67,16 @@ var PortfolioService = /** @class */ (function () {
             return transformedPortfolioDetail;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json()), error.status;
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.getAllMonthlyData = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.portfolioMonthly)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.portfolioMonthly + token)
             .map(function (response) {
             var portfolioMonthlyDetails = response.json().obj;
             var transformedPortfolioMonthlyDetail = [];
@@ -75,13 +87,16 @@ var PortfolioService = /** @class */ (function () {
             return transformedPortfolioMonthlyDetail;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.getActiveFunds = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.fundWise)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.fundWise + token)
             .map(function (response) {
             var activeFundsDetails = response.json().obj;
             var activeFundName = [];
@@ -91,13 +106,16 @@ var PortfolioService = /** @class */ (function () {
             return activeFundName;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.getFundLastEntry = function (name) {
         var _this = this;
-        return this.http.get(API.api_url + API.fundLastEntry, {
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.fundLastEntry + token, {
             params: {
                 name: name
             }
@@ -117,13 +135,16 @@ var PortfolioService = /** @class */ (function () {
             return fundLast;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.getLastEntry = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.lastEntry)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.lastEntry + token)
             .map(function (response) {
             var details = response.json().obj;
             var lastEntries = [];
@@ -133,28 +154,34 @@ var PortfolioService = /** @class */ (function () {
             return lastEntries;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.zeroEntries = function () {
         var _this = this;
-        return this.http.get(API.api_url + API.zeroLastEntry)
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url + API.zeroLastEntry + token)
             .map(function (response) {
             var zeroActiveFundLastDetail = response.json().obj;
             return zeroActiveFundLastDetail;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
     PortfolioService.prototype.fundZeroEntries = function (obj, fromDate, toDate) {
         var _this = this;
+        var token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
         var startDate = fromDate;
         var endDate = toDate;
         var api = API.api_url + API.dataForDates;
-        return this.http.get(API.api_url + API.dataForDates, {
+        return this.http.get(API.api_url + API.dataForDates + token, {
             params: {
                 name: obj._id,
                 startDate: startDate,
@@ -171,7 +198,7 @@ var PortfolioService = /** @class */ (function () {
             }
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -193,7 +220,7 @@ var PortfolioService = /** @class */ (function () {
             }
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -211,7 +238,7 @@ var PortfolioService = /** @class */ (function () {
             return 'Detail added';
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -231,7 +258,7 @@ var PortfolioService = /** @class */ (function () {
             return details['data'][0];
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -254,7 +281,7 @@ var PortfolioService = /** @class */ (function () {
             return true;
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -273,7 +300,7 @@ var PortfolioService = /** @class */ (function () {
             _this.errorService.handleSuccess(response.json());
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
@@ -288,7 +315,7 @@ var PortfolioService = /** @class */ (function () {
             _this.errorService.handleSuccess(response.json());
         })
             .catch(function (error) {
-            _this.errorService.handleError(error.json());
+            _this.errorService.handleError(error.json(), error.status);
             return Observable.throw(error.json());
         });
     };
