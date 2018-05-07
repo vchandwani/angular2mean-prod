@@ -341,6 +341,7 @@ export class PortfolioDetailComponent implements OnInit {
                                                 if (this.portfolioNames.length == this.mutualOptionsChart.length + this.stockOptionsChart.length) {
                                                     this.stockDisplay = true;
                                                     this.mutualDisplay = true;
+                                                    this.spinnerService.hide();
                                                 }
                                             },
                                             error => {
@@ -354,7 +355,6 @@ export class PortfolioDetailComponent implements OnInit {
                                 //console.error(error)
                             }
                         );
-                    this.spinnerService.hide();
                 },
                 error => {
                     this.spinnerService.hide();

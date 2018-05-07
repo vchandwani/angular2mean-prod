@@ -12,9 +12,9 @@ import { ErrorService } from "../errors/error.service";
 
 })
 export class PortfolioComponent implements OnInit {
-    public mutualChartColors:Array<any> = [{backgroundColor: []}];
-    public stockChartColors:Array<any> = [{backgroundColor: []}];
-    public doughnutChartOptions: any = { 'responsive': true,'maintainAspectRatio':true,'transparencyEffects':true};
+    public mutualChartColors: Array<any> = [{ backgroundColor: [] }];
+    public stockChartColors: Array<any> = [{ backgroundColor: [] }];
+    public doughnutChartOptions: any = { 'responsive': true, 'maintainAspectRatio': true, 'transparencyEffects': true };
     constructor(private spinnerService: Ng4LoadingSpinnerService, private portfolioService: PortfolioService, private errorService: ErrorService) { }
     rows = [];
     tempUID = [];
@@ -69,14 +69,18 @@ export class PortfolioComponent implements OnInit {
                                             this.chartDataMain.push(item.latestPrice * item.unit);
                                             this.totalMutualFundAmount += item.latestPrice * item.unit;
                                             localStorage.setItem('totalMutualFundAmount', this.totalMutualFundAmount.toString());
-                                            this.mutualChartColors[0].backgroundColor.push('#'+Math.floor(10000 + Math.random() * 900000));
+                                            let [sat, lightness] = [.5, .3]
+                                            let hue = Math.random();
+                                            this.mutualChartColors[0].backgroundColor.push(this.hslToRgb(hue, sat, lightness));
                                             z++;
                                         } else if (item.type = 'Stock' && this.activeStocks.indexOf(item._id) > -1) {
                                             this.stockChartLabelsMain.push(item._id);
                                             this.stockChartDataMain.push(item.latestPrice * item.unit);
                                             this.totalStockAmount += item.latestPrice * item.unit;
                                             localStorage.setItem('totalStockAmount', this.totalStockAmount.toString());
-                                            this.stockChartColors[0].backgroundColor.push('#'+Math.floor(10000 + Math.random() * 900000));
+                                            let [sat, lightness] = [.5, .3]
+                                            let hue = Math.random();
+                                            this.stockChartColors[0].backgroundColor.push(this.hslToRgb(hue, sat, lightness));
                                             k++;
                                         }
                                     });
@@ -101,6 +105,27 @@ export class PortfolioComponent implements OnInit {
                     // console.error(error)
                 }
             );
+    }
+    hslToRgb(h, s, l) {
+        let r, g, b;
+        if (s == 0) {
+            r = g = b = l;
+        } else {
+            let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            let p = 2 * l - q;
+            r = this.hue2rgb(p, q, h + 1 / 3);
+            g = this.hue2rgb(p, q, h);
+            b = this.hue2rgb(p, q, h - 1 / 3);
+        }
+        return "#" + [r * 255, g * 255, b * 255].map(c => Math.floor(c).toString(16)).join('');
+    };
+    hue2rgb(p, q, t) {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
     }
     latestPrices() {
         this.spinnerService.show();

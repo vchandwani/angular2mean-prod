@@ -7,6 +7,19 @@ var Portfolio = require('../models/portfolio');
 var Fundname = require('../models/fundname');
 
 
+router.use('/', function (req, res, next) {
+    jwt.verify(req.query.token, 'secret', function (err, decoded) {
+        if (err) {
+            return res.status(401).json({
+                title: 'Not Authenticated',
+                error: err,
+                status : 401
+            });
+        }
+        next();
+    })
+});
+
 router.get('/', function (req, res, next) {
     Portfolio.find()
         .sort('Date')
@@ -270,17 +283,6 @@ router.get('/dataForDates', function (req, res, next) {
         });
 });
 
-router.use('/', function (req, res, next) {
-    jwt.verify(req.query.token, 'secret', function (err, decoded) {
-        if (err) {
-            return res.status(401).json({
-                title: 'Not Authenticated',
-                error: err
-            });
-        }
-        next();
-    })
-});
 
 router.post('/updatePrice', function (req, res, next) {
     let uid = req.body.uid;

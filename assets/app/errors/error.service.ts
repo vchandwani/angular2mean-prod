@@ -5,12 +5,12 @@ import { Error } from "./error.model";
 export class ErrorService {
     errorOccurred = new EventEmitter<Error>();
 
-    handleError(error: any) {
-        const errorData = new Error(error.title, error.error.message,false);
+    handleError(error: any, status?:any) {
+        const errorData = new Error(error.title, error.error.message,false,status);
         this.errorOccurred.emit(errorData);
     }
     handleSuccess(error: any) {
-        const successData = new Error(error.title,'',true);
+        const successData = new Error(error.title,'',true,error.status);
         this.errorOccurred.emit(successData);
     }
 }

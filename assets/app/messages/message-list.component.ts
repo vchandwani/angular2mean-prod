@@ -57,6 +57,10 @@ export class MessageListComponent implements OnInit {
                 (messages: Message[]) => {
                     this.messages = messages;
                     this.spinnerService.hide();
+                },
+                error => {
+                    this.spinnerService.hide();
+                    //console.error(error)
                 }
             );
     }

@@ -13,7 +13,10 @@ export class PortfolioService {
 
     constructor(private http: Http, private errorService: ErrorService) { }
     getNames() {
-        return this.http.get(API.api_url+API.portfolioNames)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.portfolioNames+token)
             .map((response: Response) => {
                 const portfolioDetails = response.json().obj;
                 let portfolioNames = [];
@@ -23,12 +26,15 @@ export class PortfolioService {
                 return portfolioNames;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
     getMutualFundNames() {
-        return this.http.get(API.api_url+API.mutualFundNames)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.mutualFundNames+token)
             .map((response: Response) => {
                 const portfolioDetails = response.json().obj;
                 let portfolioNames = [];
@@ -38,12 +44,15 @@ export class PortfolioService {
                 return portfolioNames;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
     getPortfolioDetails() {
-        return this.http.get(API.api_url+API.portfolio)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.portfolio+token)
             .map((response: Response) => {
                 const portfolioDetails = response.json().obj;
                 let transformedPortfolioDetail: Portfolio[] = [];
@@ -65,12 +74,15 @@ export class PortfolioService {
                 return transformedPortfolioDetail;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json()),error.status;
                 return Observable.throw(error.json());
             });
     }
     getAllMonthlyData() {
-        return this.http.get(API.api_url+API.portfolioMonthly)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.portfolioMonthly+token)
             .map((response: Response) => {
                 const portfolioMonthlyDetails = response.json().obj;
                 let transformedPortfolioMonthlyDetail = [];
@@ -86,12 +98,15 @@ export class PortfolioService {
                 return transformedPortfolioMonthlyDetail;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
     getActiveFunds() {
-        return this.http.get(API.api_url+API.fundWise)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.fundWise+token)
             .map((response: Response) => {
                 const activeFundsDetails = response.json().obj;
                 let activeFundName = [];
@@ -101,12 +116,15 @@ export class PortfolioService {
                 return activeFundName;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
     getFundLastEntry(name) {
-        return this.http.get(API.api_url+API.fundLastEntry , {
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.fundLastEntry+token , {
             params: {
                 name: name
             }
@@ -126,12 +144,15 @@ export class PortfolioService {
                 return fundLast;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
     getLastEntry() {
-        return this.http.get(API.api_url+API.lastEntry)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.lastEntry+token)
             .map((response: Response) => {
                 const details = response.json().obj;
                 let lastEntries = [];
@@ -141,27 +162,33 @@ export class PortfolioService {
                 return lastEntries;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
     zeroEntries() {
-        return this.http.get(API.api_url+API.zeroLastEntry)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.zeroLastEntry+token)
             .map((response: Response) => {
                 const zeroActiveFundLastDetail = response.json().obj;
                 return zeroActiveFundLastDetail;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
 
     fundZeroEntries(obj, fromDate, toDate) {
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
         let startDate = fromDate;
         let endDate = toDate;
         let api = API.api_url+API.dataForDates;
-        return this.http.get(API.api_url+API.dataForDates, {
+        return this.http.get(API.api_url+API.dataForDates+token, {
             params: {
                 name: obj._id,
                 startDate: startDate,
@@ -177,7 +204,7 @@ export class PortfolioService {
                 }
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -210,7 +237,7 @@ export class PortfolioService {
                 }
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -228,7 +255,7 @@ export class PortfolioService {
                 return 'Detail added';
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -247,7 +274,7 @@ export class PortfolioService {
                 return details['data'][0];
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -269,7 +296,7 @@ export class PortfolioService {
                 return true;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -287,7 +314,7 @@ export class PortfolioService {
                 this.errorService.handleSuccess(response.json());                
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -302,7 +329,7 @@ export class PortfolioService {
                 this.errorService.handleSuccess(response.json());                
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }

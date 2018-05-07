@@ -199,4 +199,8 @@ rect.highcharts-button-box {
 .ui-inputtext {
   max-width: 100%;
 }
+
+.modal-body p {
+  color: #e2e2e2;
+}
 /*# sourceMappingURL=style.css.map */

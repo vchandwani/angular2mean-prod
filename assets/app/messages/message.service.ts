@@ -35,13 +35,16 @@ export class MessageService {
                 }                
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
 
     getMessages() {
-        return this.http.get(API.api_url+API.message)
+        const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
+        return this.http.get(API.api_url+API.message+ token)
             .map((response: Response) => {
                 const messages = response.json().obj;
                 let transformedMessages: Message[] = [];
@@ -57,7 +60,7 @@ export class MessageService {
                 return transformedMessages;
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -77,7 +80,7 @@ export class MessageService {
                 this.errorService.handleSuccess(response.json());                
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
@@ -92,7 +95,7 @@ export class MessageService {
                 this.errorService.handleSuccess(response.json());                
             })
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
+                this.errorService.handleError(error.json(),error.status);
                 return Observable.throw(error.json());
             });
     }
