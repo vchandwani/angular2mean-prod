@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'app': './assets/app/main.ts'
+        'app': './src/main.ts'
     },
 
     resolve: {
