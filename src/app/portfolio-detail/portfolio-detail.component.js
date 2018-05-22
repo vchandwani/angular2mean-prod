@@ -100,11 +100,7 @@ var PortfolioDetailComponent = /** @class */ (function () {
                                 _this.tempArrayMain[timeMain]['amount'] = Array();
                                 _this.tempArrayMain[timeMain]['amount'][0] = 0;
                             }
-<<<<<<< HEAD
-                            _this.tempArrayMain[timeMain]['amount'][0] += parseInt(nameWise.Price) * parseInt(nameWise.Unit);
-=======
                             _this.tempArrayMain[timeMain]['amount'][0] += nameWise.Price * nameWise.Unit;
->>>>>>> prod
                         }
                     }
                     z++;
