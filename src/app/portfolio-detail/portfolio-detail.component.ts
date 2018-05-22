@@ -166,7 +166,7 @@ export class PortfolioDetailComponent implements OnInit {
                                                 this.tempArrayMain[timeMain]['amount'] = Array();
                                                 this.tempArrayMain[timeMain]['amount'][0] = 0;
                                             }
-                                            this.tempArrayMain[timeMain]['amount'][0] += parseInt(nameWise.Price) * parseInt(nameWise.Unit);
+                                            this.tempArrayMain[timeMain]['amount'][0] += nameWise.Price * nameWise.Unit;
                                         }
                                     }
                                     z++;

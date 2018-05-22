@@ -317,10 +317,10 @@ router.post('/', function (req, res, next) {
         Name: req.body._id?req.body._id:req.body.Name,
         Date: req.body.datePrice?req.body.datePrice:req.body.Date,
         Transaction: req.body.Transaction,
-        Amount: parseInt(req.body.Amount),
-        Units: parseInt(req.body.Units),
-        Price: parseInt(req.body.latestPrice?req.body.latestPrice:req.body.Price),
-        Unit: parseInt(req.body.unit?req.body.unit:req.body.Unit),
+        Amount: req.body.Amount,
+        Units: req.body.Units,
+        Price: req.body.latestPrice?req.body.latestPrice:req.body.Price,
+        Unit: req.body.unit?req.body.unit:req.body.Unit,
         type: req.body.type,
         uid: req.body.uid
     });
