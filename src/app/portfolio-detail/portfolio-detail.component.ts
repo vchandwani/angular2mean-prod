@@ -191,7 +191,7 @@ export class PortfolioDetailComponent implements OnInit {
                                                 this.lineChartLabels.push(new Date(time).getDay() + '-' + this.month[new Date(time).getMonth()] + '-' + new Date(time).getFullYear());
                                             } else if (y == this.tempMonthMain.length) {
                                                 // Get latest price and add it to main Item array
-                                                this.totalAmount = localStorage.getItem('totalAmount');
+                                                this.totalAmount = parseInt(localStorage.getItem('totalAmount'));
                                                 let tempArray = Array();
                                                 let time: number = item;
                                                 tempArray.push(new Date().getTime());
