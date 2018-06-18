@@ -12,7 +12,7 @@ var userRoutes = require('./routes/user');
 var portfolioRoutes = require('./routes/portfolio');
 
 var app = express();
-mongoose.connect('mongodb://varunchandwani:Varun#123@mean-shard-00-00-gznja.mongodb.net:27017,mean-shard-00-01-gznja.mongodb.net:27017,mean-shard-00-02-gznja.mongodb.net:27017/node-angular?ssl=true&replicaSet=Mean-shard-0&authSource=admin');
+mongoose.connect('localhost:27017/node-angular');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
